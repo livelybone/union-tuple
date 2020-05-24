@@ -13,27 +13,23 @@ https://github.com/livelybone/union-tuple.git
 ## Demo
 https://github.com/livelybone/union-tuple#readme
 
-## Run Example
-you can see the usage by run the example of the module, here is the step:
-
-1. Clone the library `git clone https://github.com/livelybone/union-tuple.git`
-2. Go to the directory `cd your-module-directory`
-3. Install npm dependencies `npm i`(use taobao registry: `npm i --registry=http://registry.npm.taobao.org`)
-4. Open service `npm run dev`
-5. See the example(usually is `http://127.0.0.1:3000/examples/test.html`) in your browser
-
 ## Installation
 ```bash
 npm i -S union-tuple
 ```
 
-## Global name - The variable the module exported in `umd` bundle
-`UnionTuple`
-
 ## Interface
 See what method or params you can use in [index.d.ts](./index.d.ts)
 
 ## Usage
+
+### IsTuple
+```typescript
+import { IsTuple } from 'union-tuple'
+
+type Foo = IsTuple<[1, 2]>
+const foo: Foo = true
+```
 
 ### TupleToUnion
 ```typescript

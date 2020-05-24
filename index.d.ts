@@ -1,3 +1,20 @@
+export type IsTuple<Tuple extends any[]> = {
+  empty: true
+  nonEmpty: ((...p: Tuple) => any) extends (
+    p1: infer First,
+    ...p: infer Rest
+  ) => any
+    ? IsTuple<Rest>
+    : never
+  infinite: false
+}[Tuple extends []
+  ? 'empty'
+  : Tuple extends (infer Element)[]
+  ? Element[] extends Tuple
+    ? 'infinite'
+    : 'nonEmpty'
+  : never]
+
 export type TupleToUnion<T> = T extends (infer E)[] ? E : never
 
 export type UnionPop<U> = ((U extends any
@@ -46,5 +63,5 @@ export type UnionToTupleWithMap<
 
 export type TupleMap<
   T extends any[],
-  Map extends { [k in any]: any }
+  Map extends { [k in TupleToUnion<T>]: any }
 > = UnionToTupleWithMap<TupleToUnion<T>, Map>
