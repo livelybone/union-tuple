@@ -51,17 +51,16 @@ type UnionToTupleWithMapRecursively<
   0: UnionToTupleWithMapRecursively<
     Exclude<Union, UnionPop<Union>>,
     Map,
-    // @ts-ignore
     TuplePrepend<Result, Map[UnionPop<Union>]>
   >
 }[[Union] extends [never] ? 1 : 0]
 
 export type UnionToTupleWithMap<
   U extends string | number | symbol,
-  Map extends { [k in U]: any }
+  Map extends { [k in any]: any }
 > = UnionToTupleWithMapRecursively<U, Map, []>
 
 export type TupleMap<
   T extends any[],
-  Map extends { [k in TupleToUnion<T>]: any }
+  Map extends { [k in any]: any }
 > = UnionToTupleWithMap<TupleToUnion<T>, Map>
