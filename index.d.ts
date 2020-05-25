@@ -5,7 +5,7 @@ export type IsTuple<Tuple extends any[]> = {
     ...p: infer Rest
   ) => any
     ? IsTuple<Rest>
-    : never
+    : false
   infinite: false
 }[Tuple extends []
   ? 'empty'
